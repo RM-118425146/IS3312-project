@@ -1,0 +1,122 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* Create three equal columns that floats next to each other */
+.Cust-column-home {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+  height: 625px;
+}
+
+/* Clear floats after the columns */
+.Cust-row-home:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Create two equal columns that floats next to each other */
+.Cust-column-login {
+  float: left;
+  width: 50%;
+  padding: 15px;
+  height: 445px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  text-align: center;
+  padding: 125px 0;
+}
+
+.Cust-row-login{
+    padding:15px;
+}
+
+/* Clear floats after the columns */
+.Cust-row-login:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .Cust-column-login {
+    width: 100%;
+  }
+}
+
+.container-products{
+    margin-right:auto;
+    margin-left:auto;
+    padding-right:50px;
+    padding-left:50px;
+    padding-top:15px;
+    padding-bottom:50px;
+    width:100%;
+}
+
+.my-4-products{
+    margin-top:1.5rem!important;
+    margin-bottom:1.5rem!important;
+    padding-left: 50px;
+}
+
+.py-5-cust{
+    padding-top:3rem!important;
+    padding-bottom:3rem!important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.card-cust{
+    position:relative;
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    min-width:0;
+    word-wrap:break-word;
+    background-color:#fff;
+    background-clip:border-box;
+    border:1px solid rgba(0,0,0,.125);
+    border-radius:.25rem;
+    text-align: left;
+    padding: 125px 0;
+}
+
+.column-error {
+  float: left;
+  width: 100%;
+  padding: 15px;
+  height: 475px;
+  text-align: center;
+}
+
+.column-checkout-left {
+  float: left;
+  width: 50%;
+  padding: 15px;
+  height: 475px;
+  text-align: center;
+}
+
+.column-checkout {
+  float: left;
+  width: 50%;
+  padding: 15px;
+  height: 475px;
+  text-align: center;
+  padding: 125px 0;
+}
+
+.row-error:after {
+  content: "";
+  display: table;
+  clear: both;
+  padding-bottom: 15px;
+}
+

@@ -18,7 +18,7 @@ public class ProductDB {
     public ArrayList<Product> getHomePageProducts(){
         
         ProductDAO pDao = new ProductDAO();
-        return pDao.getTopProducts(6);
+        return pDao.getTopProducts(12);
         
     }
         

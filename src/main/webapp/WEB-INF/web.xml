@@ -17,10 +17,18 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Servlets.LoginServlet</servlet-class>             
     </servlet>
-
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+        <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>Servlets.ProductServlett</servlet-class>             
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/ProductServlet</url-pattern>
     </servlet-mapping>
     
         <!-- Enable the custom error pages -->

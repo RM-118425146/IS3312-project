@@ -1,7 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -49,7 +48,7 @@
                             <a class="nav-link" href="./login.jsp">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./cart.html">Cart</a>
+                            <a class="nav-link" href="./cart.jsp">Cart</a>
                         </li>
                     </ul>
                 </div>
@@ -66,39 +65,42 @@
 
             <!-- Page Features -->
             <div class="row text-center">
-                
+
                 <c:forEach items="${products}" var="topProduct">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card">
-                        <a href="#"><img class="card-img-top" src="resources/images/${topProduct.imageLocation}" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">${topProduct.name}</h4>
-                            <p class="card-text">${topProduct.description}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" Value="${topProduct.price}" class="btn btn-primary">Buy!</a>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card">
+                            <a href="#"><img class="card-img-top" src="resources/images/${topProduct.imageLocation}" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">${topProduct.name}</h4>
+                                <p class="card-text">${topProduct.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <form action="cart" method="post">
+                                    <input type="hidden" name="productCode" value="${topProduct.Code}">
+                                    <input type="submit" value="€${topProduct.price} - Add to Basket!" class="btn btn-primary">
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach> 
-                
-            <!-- /.row -->
+                </c:forEach> 
 
-        </div>
-        <!-- /.container -->
+                <!-- /.row -->
 
-        <!-- Footer -->
-        <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Murnane &AMP; Co. 2020</p>
             </div>
             <!-- /.container -->
-        </footer>
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="resources/vendor/jquery/jquery.min.js"></script>
-        <script src="resources/vendor/popper/popper.min.js"></script>
-        <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!-- Footer -->
+            <footer class="py-5 bg-dark">
+                <div class="container">
+                    <p class="m-0 text-center text-white">Copyright &copy; Murnane &AMP; Co. 2020</p>
+                </div>
+                <!-- /.container -->
+            </footer>
+
+            <!-- Bootstrap core JavaScript -->
+            <script src="resources/vendor/jquery/jquery.min.js"></script>
+            <script src="resources/vendor/popper/popper.min.js"></script>
+            <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     </body>
 

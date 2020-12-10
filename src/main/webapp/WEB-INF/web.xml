@@ -22,16 +22,25 @@
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     
-        <servlet>
+    <servlet>
         <servlet-name>ProductServlet</servlet-name>
-        <servlet-class>Servlets.ProductServlett</servlet-class>             
+        <servlet-class>Servlets.ProductServlet</servlet-class>             
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>
         <url-pattern>/ProductServlet</url-pattern>
     </servlet-mapping>
     
-        <!-- Enable the custom error pages -->
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>Servlets.CartServlet</servlet-class>             
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/CartServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Enable the custom error pages -->
     <error-page>
         <error-code>404</error-code>
         <location>/error.html</location>

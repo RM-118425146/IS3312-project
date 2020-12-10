@@ -1,3 +1,5 @@
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +46,7 @@
                             <a class="nav-link" href="./login.jsp">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./cart.html">Cart</a>
+                            <a class="nav-link" href="./cart.jsp">Cart</a>
                         </li>
                     </ul>
                 </div>

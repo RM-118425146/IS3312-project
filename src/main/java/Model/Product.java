@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.text.NumberFormat;
+
 /**
  *
  * @author be_me
@@ -13,8 +15,9 @@ public class Product {
     
     private long id;
     private String name;
+    private String Code;
     private String description;
-    private float price;
+    private double price;
     private String imageLocation;
 
     /**
@@ -29,6 +32,14 @@ public class Product {
      */
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return Code;
+    }
+
+    public void setCode(String Code) {
+        this.Code = Code;
     }
 
     /**
@@ -62,14 +73,14 @@ public class Product {
     /**
      * @return the price
      */
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -86,6 +97,12 @@ public class Product {
     public void setImageLocation(String imageLocation) {
         this.imageLocation = imageLocation;
     }
+    
+        public String getPriceCurrencyFormat()
+    {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(price);
+    } 
     
 }
 

@@ -5,6 +5,7 @@
  */
 package Utils;
 
+import Model.LineItem;
 import javax.servlet.jsp.*;
 import javax.servlet.jsp.tagext.*;
 import java.util.*;

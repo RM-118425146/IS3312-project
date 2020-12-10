@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Model.LineItem;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;

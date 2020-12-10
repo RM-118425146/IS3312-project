@@ -12,7 +12,7 @@ import java.text.NumberFormat;
  * @author be_me
  */
 public class Product {
-    
+
     private long id;
     private String name;
     private String Code;
@@ -97,12 +97,10 @@ public class Product {
     public void setImageLocation(String imageLocation) {
         this.imageLocation = imageLocation;
     }
-    
-        public String getPriceCurrencyFormat()
-    {
+
+    public String getPriceCurrencyFormat() {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
         return currency.format(price);
-    } 
-    
-}
+    }
 
+}

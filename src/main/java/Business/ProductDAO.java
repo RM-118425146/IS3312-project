@@ -19,6 +19,7 @@ public class ProductDAO {
     public ArrayList<Product> getTopProducts(int numProducts){
         
         ArrayList<Product> prods = new ArrayList();
+        
         Product p1 = new Product();
         p1.setId(1);
         p1.setCode("aaa");

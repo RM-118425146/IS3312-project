@@ -72,7 +72,7 @@ public class CartServlet extends HttpServlet {
             url = "/cart.jsp";
         }
         else if (action.equals("checkout")) {
-            url = "/index.html";
+            url = "/index.jsp";
         }
 
         sc.getRequestDispatcher(url)

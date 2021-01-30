@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
     <head>
@@ -37,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="./index.html">Home</a>
+                            <a class="nav-link" href="./index.jsp">Home</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="./ProductServlet">Products
@@ -63,18 +62,18 @@
             <!-- Page Features -->
             <div class="row text-center">
 
-                <c:forEach items="${products}" var="topProduct">
+                <c:forEach items="${products}" var="topProducts">
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card">
-                            <a href="#"><img class="card-img-top" src="resources/images/${topProduct.imageLocation}" alt=""></a>
+                            <a href="#"><img class="card-img-top" src="resources/images/${topProducts.imageLocation}" alt=""></a>
                             <div class="card-body">
-                                <h4 class="card-title">${topProduct.name}</h4>
-                                <p class="card-text">${topProduct.description}</p>
+                                <h4 class="card-title">${topProducts.name}</h4>
+                                <p class="card-text">${topProducts.description}</p>
                             </div>
                             <div class="card-footer">
                                 <form action="cart" method="post">
-                                    <input type="hidden" name="productCode" value="${topProduct.Code}">
-                                    <input type="submit" value="€${topProduct.price} - Add to Basket!" class="btn btn-primary">
+                                    <input type="hidden" name="productCode" value="${topProducts.Code}">
+                                    <input type="submit" value="€${topProducts.price} - Add to Basket!" class="btn btn-primary">
                                 </form>
                             </div>
                         </div>

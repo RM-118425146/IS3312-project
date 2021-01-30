@@ -1,10 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Servlets;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -16,7 +9,7 @@ import Model.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "productServlet", urlPatterns = {"/productServlet"})
-public class productServlet extends HttpServlet {
+public class productServlets extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

@@ -58,10 +58,10 @@ public class LoginServlet extends HttpServlet implements IConstants {
                     RequestDispatcher rd = request.getRequestDispatcher("/AdminHome.html");
                     rd.forward(request, response);
                 } else if (user.getUserType().equals(IConstants.USER_TYPE_GENERAL_USER)) {
-                    RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+                    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
                     rd.forward(request, response);
                 } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+                    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
                     rd.forward(request, response);
                 }
             }

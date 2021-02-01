@@ -39,7 +39,7 @@
                             <a class="nav-link" href="./index.jsp">Home</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="./ProductServlet">Products
+                            <a class="nav-link" href="./productServlet">Products
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>

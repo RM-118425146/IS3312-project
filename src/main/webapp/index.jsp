@@ -75,7 +75,7 @@
                         <a href="#"><img class="card-img-top" src="resources/images/image2.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="./ProductServlet">Products</a>
+                                <a href="./productServlet">Products</a>
                             </h4>
                             <p class="card-text">We stock 10's of products here at Murnane & co. ranging from shampoo and conditioner to hair brushes and hair gel. Whatever you want for your hair needs, we got it, probably. Browse our products now and take a look for yourself, we guarantee you won't be disappointed!</p>
                         </div>

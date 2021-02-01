@@ -24,12 +24,12 @@ public class Cart implements Serializable
     
     public void addItem(LineItem item)
     {
-        String Code = item.getProduct().getCode();
+        String itemCode = item.getProduct().getitemCode();
         int quantity = item.getQuantity();
         for (int i = 0; i < items.size(); i++)
         {
             LineItem lineItem = items.get(i);
-            if  (lineItem.getProduct().getCode().equals(Code))
+            if  (lineItem.getProduct().getitemCode().equals(itemCode))
             {
                 lineItem.setQuantity(quantity);
                 return;
@@ -40,11 +40,11 @@ public class Cart implements Serializable
     
     public void removeItem(LineItem item)
     {
-        long code = item.getProduct().getId();
+        long itemCode = item.getProduct().getId();
         for (int i = 0; i < items.size(); i++)
         {
             LineItem lineItem = items.get(i);
-            if (lineItem.getProduct().getCode().equals(code))
+            if (lineItem.getProduct().getitemCode().equals(itemCode))
             {
                 items.remove(i);
                 return;

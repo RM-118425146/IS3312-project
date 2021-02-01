@@ -11,7 +11,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import Business.*;
-import Data.*;
 import Model.*;
 
 public class CartServlet extends HttpServlet {
@@ -35,8 +34,8 @@ public class CartServlet extends HttpServlet {
             url = "/products.jsp";    // the "index" page
         } 
         else if (action.equals("cart")) {
-            String productCode = request.getParameter("productCode");
-            String quantityString = request.getParameter("quantity");
+            String productCode = request.getParameter("itemCode");
+            String quantityString = "1";
 
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");

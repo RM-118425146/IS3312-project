@@ -15,7 +15,7 @@ public class Product {
 
     private long id;
     private String name;
-    private String Code;
+    private String itemCode;
     private String description;
     private double price;
     private String imageLocation;
@@ -34,12 +34,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getCode() {
-        return Code;
+    public String getitemCode() {
+        return itemCode;
     }
 
-    public void setCode(String Code) {
-        this.Code = Code;
+    public void setitemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
     /**

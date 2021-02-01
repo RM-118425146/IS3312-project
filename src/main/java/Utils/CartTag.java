@@ -45,7 +45,7 @@ public class CartTag extends BodyTagSupport {
     private void setItemAttributes(LineItem item) {
         Product p = item.getProduct();
         pageContext.setAttribute(
-                "productCode", p.getCode());
+                "productCode", p.getitemCode());
         pageContext.setAttribute(
                 "productDescription", p.getDescription());
         pageContext.setAttribute(

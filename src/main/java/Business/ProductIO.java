@@ -12,7 +12,7 @@ import Model.*;
 
 public class ProductIO {
 
-    public static Product getProduct(String code, String filepath) {
+    public static Product getProduct(String itemCode, String filepath) {
         try {
             File file = new File(filepath);
             BufferedReader in
@@ -23,11 +23,11 @@ public class ProductIO {
             while (line != null) {
                 StringTokenizer t = new StringTokenizer(line, "|");
                 String productCode = t.nextToken();
-                if (code.equalsIgnoreCase(productCode)) {
+                if (itemCode.equalsIgnoreCase(productCode)) {
                     String description = t.nextToken();
                     double price = Double.parseDouble(t.nextToken());
                     Product p = new Product();
-                    p.setCode(code);
+                    p.setitemCode(itemCode);
                     p.setDescription(description);
                     p.setPrice(price);
                     in.close();
@@ -54,12 +54,12 @@ public class ProductIO {
             String line = in.readLine();
             while (line != null) {
                 StringTokenizer t = new StringTokenizer(line, "|");
-                String code = t.nextToken();
+                String itemCode = t.nextToken();
                 String description = t.nextToken();
                 String priceAsString = t.nextToken();
                 double price = Double.parseDouble(priceAsString);
                 Product p = new Product();
-                p.setCode(code);
+                p.setitemCode(itemCode);
                 p.setDescription(description);
                 p.setPrice(price);
                 products.add(p);

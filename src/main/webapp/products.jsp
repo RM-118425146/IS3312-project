@@ -71,8 +71,9 @@
                                 <p class="card-text">${topProducts.description}</p>
                             </div>
                             <div class="card-footer">
-                                <form action="cart" method="post">
-                                    <input type="hidden" name="productCode" value="${topProducts.Code}">
+                                <form action="CartServlet" method="post">
+                                    <input type="hidden" name="itemCode" value="${topProducts.itemCode}">
+                                    <input type="hidden" name="action" value="cart">
                                     <input type="submit" value="€${topProducts.price} - Add to Basket!" class="btn btn-primary">
                                 </form>
                             </div>

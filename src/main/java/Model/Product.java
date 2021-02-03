@@ -5,13 +5,14 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
 
 /**
  *
  * @author be_me
  */
-public class Product {
+public class Product implements Serializable {
 
     private long id;
     private String name;
@@ -19,7 +20,17 @@ public class Product {
     private String description;
     private double price;
     private String imageLocation;
-
+    
+    public Product()
+    {   
+        id=0;
+        name="";
+        itemCode = "";
+        description = "";
+        price = 0;
+        imageLocation="";
+    }
+    
     /**
      * @return the id
      */

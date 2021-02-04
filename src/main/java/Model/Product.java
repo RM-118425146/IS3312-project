@@ -18,7 +18,7 @@ public class Product implements Serializable {
     private String name;
     private String itemCode;
     private String description;
-    private double price;
+    private float price;
     private String imageLocation;
     
     public Product()
@@ -91,7 +91,7 @@ public class Product implements Serializable {
     /**
      * @param price the price to set
      */
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

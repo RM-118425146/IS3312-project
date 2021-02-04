@@ -19,7 +19,7 @@
     <servlet>
         <servlet-name>DbInitServlet</servlet-name>
         <servlet-class>Utils.DbInitServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>        
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

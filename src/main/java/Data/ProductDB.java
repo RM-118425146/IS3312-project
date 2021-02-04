@@ -5,7 +5,7 @@
  */
 package Data;
 
-import Business.ProductDAO;
+import Business.*;
 import java.util.ArrayList;
 import Model.Product;
 

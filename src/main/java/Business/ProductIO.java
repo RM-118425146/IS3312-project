@@ -25,7 +25,7 @@ public class ProductIO {
                 String productCode = t.nextToken();
                 if (itemCode.equalsIgnoreCase(productCode)) {
                     String description = t.nextToken();
-                    double price = Double.parseDouble(t.nextToken());
+                    float price = Float.parseFloat(t.nextToken());
                     Product p = new Product();
                     p.setitemCode(itemCode);
                     p.setDescription(description);
@@ -57,7 +57,7 @@ public class ProductIO {
                 String itemCode = t.nextToken();
                 String description = t.nextToken();
                 String priceAsString = t.nextToken();
-                double price = Double.parseDouble(priceAsString);
+                float price = Float.parseFloat(t.nextToken());
                 Product p = new Product();
                 p.setitemCode(itemCode);
                 p.setDescription(description);

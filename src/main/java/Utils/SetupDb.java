@@ -24,24 +24,35 @@ public class SetupDb {
 
     Logger logger = Logger.getLogger(DBManager.class.getName());
 
-    void createTables() {
+    public void createTables() {
 
         DBManager dmbgr = new DBManager();
 
         Connection con = dmbgr.getConnection();
 
-        InputStream inpStr = this.getClass().getResourceAsStream("createdb.sql");
+        InputStream inpStr = null;
+
+        try {
+            inpStr = SetupDb.class.getClassLoader().getResourceAsStream("createdb.sql");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         executeSqlScript(con, inpStr);
     }
 
-    void insertSetupData() {
+    public void insertSetupData() {
 
         DBManager dmbgr = new DBManager();
 
         Connection con = dmbgr.getConnection();
-        
-        InputStream inpStr = this.getClass().getResourceAsStream("insertdata.sql");
+
+        InputStream inpStr = null;
+        try {
+            inpStr = SetupDb.class.getClassLoader().getResourceAsStream("insertdata.sql");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
         executeSqlScript(con, inpStr);
     }
@@ -77,16 +88,18 @@ public class SetupDb {
 
         try {
             stmt = con.createStatement();
-            ResultSet results = stmt.executeQuery("select * from INSTRUMENTS");
+            ResultSet results = stmt.executeQuery("select * from PRODUCTS");
 
             System.out.println("\n-------------------------------------------------");
 
             while (results.next()) {
                 int id = results.getInt(1);
-                String userName = results.getString(2);
-                String fName = results.getString(1);
-                String lName = results.getString(6);
-                logger.info(id + "\t\t" + userName + "\t\t" + fName + "\t\t" + lName);
+                String name = results.getString(2);
+                String itemCode = results.getString(3);
+                String description = results.getString(4);
+                float price = results.getFloat(5);
+                String imageLocation = results.getString(6);
+                logger.info(id + "\t\t" + name + "\t\t" + itemCode + "\t\t" + description + "\t\t" + price + "\t\t" + imageLocation);
             }
             results.close();
             stmt.close();

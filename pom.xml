@@ -17,14 +17,18 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
+            <artifactId>derby</artifactId>
             <version>10.15.2.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.derby</groupId>
-                    <artifactId>derbyshared</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyshared</artifactId>
+            <version>10.15.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.14.2.0</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

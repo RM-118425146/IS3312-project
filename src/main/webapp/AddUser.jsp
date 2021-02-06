@@ -19,6 +19,8 @@
 
         <!-- Custom style for columns -->
         <link rel="stylesheet" href="resources/css/custom-css.css">
+        <link href="resourcescss/shop-homepage.css" rel="stylesheet">
+
 
     </head>
     <body>
@@ -88,14 +90,10 @@
                     <div class="form-group row">
                         <label class="col-4">User Type</label> 
                         <div class="col-8">
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input name="userType" id="userType_0" type="radio" class="custom-control-input" value="ADMIN"> 
-                                <label for="userType_0" class="custom-control-label">Administrator</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input name="userType" id="userType_1" type="radio" class="custom-control-input" value="GENUSER"> 
-                                <label for="userType_1" class="custom-control-label">Customer</label>
-                            </div>
+                            <select id="userType" name="userType">
+                                <option value="ADMIN">Administrator</option>
+                                <option value="GENUSER">Customer</option>
+                            </select>
                         </div>
                     </div> 
                     <div class="form-group row">

@@ -45,6 +45,12 @@ public class UserAdminServlet extends HttpServlet {
         if (action.equals("add")){
             request.getRequestDispatcher("/AddUser.jsp").forward(request, response);
         }
+        if (action.equals("delete")){
+            deleteUser(request,response);
+            ArrayList<User> users = uServ.getAllUsers();
+            request.setAttribute("users", users);
+            request.getRequestDispatcher("/userAdmin.jsp").forward(request, response);
+        }
         if (action.equals("insertUser")){
             insertUser(request,response);
             ArrayList<User> users = uServ.getAllUsers();
@@ -92,6 +98,15 @@ public class UserAdminServlet extends HttpServlet {
         
         
         
+    }
+    
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response){
+        
+        long userId = Long.parseLong(request.getParameter("id"));
+        UserService uServ = new UserService();
+        uServ.deleteUser(userId);
+        return;
+    
     }
 
     /**

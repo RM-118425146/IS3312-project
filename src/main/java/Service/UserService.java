@@ -41,4 +41,11 @@ public class UserService {
         
     }
     
+    public void deleteUser(long userId){
+        UserDAO uDao = new UserDAO();
+        uDao.deleteUser(userId);
+        return;
+        
+    }
+    
 }

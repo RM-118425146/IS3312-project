@@ -73,12 +73,16 @@
                                 <c:param name="action" value="edit"/>
                                 <c:param name="id" value="${user.id}"/>
                             </c:url>
+                            <c:url value="./UserAdminServlet" var="deleteUserUrl">
+                                <c:param name="action" value="delete"/>
+                                <c:param name="id" value="${user.id}"/>
+                            </c:url>
                             <tr>
                                 <td scope="row">${user.id}</th>
                                 <td>${user.firstName}</td>
                                 <td>${user.lastName}</td>
                                 <td>${user.email}</td>
-                                <td><a href="${editUserUrl}"> Edit</a> Delete</td>
+                                <td><a href="${editUserUrl}"> Edit</a> <a href="${deleteUserUrl}">Delete</a></td>
                             </tr>
                         </c:forEach>
                         <tr>

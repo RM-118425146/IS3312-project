@@ -126,4 +126,29 @@ public class UserDAO {
         }
     }
     
+    public void deleteUser(long userId){
+        
+        DBManager dmbgr = new DBManager();
+        Connection con = dmbgr.getConnection();
+        Statement stmt = null;
+        
+        try {
+        
+            stmt = con.createStatement();
+            String sql = String.format("DELETE FROM USERDATA WHERE USER_ID=%d",userId);
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+         }finally {
+            try {
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
+    
 }

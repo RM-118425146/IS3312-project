@@ -16,13 +16,14 @@ import java.util.Vector;
 import java.util.logging.Level;
 import Data.UserDB;
 import Utils.DBManager;
+import java.util.ArrayList;
 
 /**
  *
  * @author bemerson
  */
 public class UserDAO {
-    
+
     public User getUserByEmail(String email) {
 
         DBManager dmbgr = new DBManager();
@@ -60,7 +61,7 @@ public class UserDAO {
 
     }
 
-    public Vector<User> getAllUsers() {
+    public ArrayList<User> getAllUsers() {
 
         DBManager dm = new DBManager();
         Connection con = dm.getConnection();
@@ -70,8 +71,7 @@ public class UserDAO {
         String fName = null;
         String lName = null;
         String userType = null;
-        User tempUser = new User();
-        Vector<User> userData = new Vector();
+        ArrayList<User> userData = new ArrayList();
 
         String query = "SELECT * FROM USERDATA";
         try {
@@ -84,6 +84,7 @@ public class UserDAO {
                 fName = (rs.getString(4));
                 lName = (rs.getString(5));
                 userType = (rs.getString(6));
+                User tempUser = new User();
                 tempUser.setEmail(email);
                 tempUser.setId(userId);
                 tempUser.setFirstName(fName);
@@ -97,11 +98,32 @@ public class UserDAO {
             e.printStackTrace();
         }
 
-      
         return userData;
 
     }
 
-   
+    public void insertUser(User newUser) {
 
+        DBManager dmbgr = new DBManager();
+        Connection con = dmbgr.getConnection();
+        Statement stmt = null;
+
+        try {
+
+            stmt = con.createStatement();
+            String sql = String.format("INSERT INTO USERDATA(EMAIL,PASSWORD,FNAME,LNAME,USERTYPE) "
+                    + "VALUES('%s','%s','%s','%s','%s')", newUser.getEmail(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName(), newUser.getUserType());
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
 }

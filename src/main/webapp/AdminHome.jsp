@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.User"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
 
@@ -37,8 +39,16 @@
                             <a class="nav-link" href="./productServlet">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./login.jsp">Login
-                            </a>
+                            <c:if test="${empty SKUSER.firstName}">
+                                <a class="nav-link" href="./login.jsp">Login
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </c:if>
+                            <c:if test="${not empty SKUSER.firstName}">
+                                <a class="nav-link" href="./login.jsp">Hi ${SKUSER.firstName}
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </c:if>
                         </li>
                     </ul>
                 </div>
@@ -56,10 +66,10 @@
                 <div class="column-checkout-left">
                     <img  src="resources/images/leo.gif" alt="">
                 </div>
-                <div class="column-admin">
-                    <a href="./productServlet" class="btn btn-success">Manage Users!</a>
+                <div class="column-checkout">
+                    <a href="./UserAdminServlet?action=listUsers" class="btn btn-success">Manage Users!</a>
                     <br></br>
-                    <a href="./productServlet" class="btn btn-success">Manage Products!</a>
+                    <a href="./UserAdminServlet?action=listUsers" class="btn btn-success">Manage Products!</a>
                 </div>
             </div>
         </div>

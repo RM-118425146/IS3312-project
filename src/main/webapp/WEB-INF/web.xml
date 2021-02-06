@@ -21,6 +21,10 @@
         <servlet-class>Utils.DbInitServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>UserAdminServlet</servlet-name>
+        <servlet-class>Servlets.UserAdminServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -40,6 +44,10 @@
     <servlet-mapping>
         <servlet-name>DbInitServlet</servlet-name>
         <url-pattern>/DbInitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserAdminServlet</servlet-name>
+        <url-pattern>/UserAdminServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

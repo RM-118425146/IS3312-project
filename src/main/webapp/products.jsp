@@ -91,7 +91,6 @@
                 <div class="container">
                     <p class="m-0 text-center text-white">Copyright &copy; Murnane &AMP; Co. 2020</p>
                 </div>
-                <!-- /.container -->
             </footer>
 
             <!-- Bootstrap core JavaScript -->

@@ -7,9 +7,11 @@ package Servlets;
 
 import Data.UserDB;
 import Model.User;
+import Service.*;
 import Utils.IConstants;
 import Utils.StringUtils;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,38 +37,19 @@ public class LoginServlet extends HttpServlet implements IConstants {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        if (StringUtils.isStringEmpty(email) || StringUtils.isStringEmpty(password)) {
-
-            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-            rd.forward(request, response);
-
-        } else {
-
-            UserDB uMgr = new UserDB();
-            User user = uMgr.loginUser(email, password);
-            if (user == null) {
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-                System.out.println(user);
-            } else {
-                request.getSession(true).setAttribute(IConstants.SESSION_KEY_USER, user);
-                if (user.getUserType().equals(IConstants.USER_TYPE_ADMIN)) {
-                    RequestDispatcher rd = request.getRequestDispatcher("/AdminHome.html");
-                    rd.forward(request, response);
-                } else if (user.getUserType().equals(IConstants.USER_TYPE_GENERAL_USER)) {
-                    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-                    rd.forward(request, response);
-                } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-                    rd.forward(request, response);
-                }
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -95,7 +78,37 @@ public class LoginServlet extends HttpServlet implements IConstants {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        
+        if (StringUtils.isStringEmpty(email) || StringUtils.isStringEmpty(password)) {
+
+            RequestDispatcher rd = request.getRequestDispatcher("./login.jsp");
+            rd.forward(request, response);
+
+        } else {
+
+            UserService uServ = new UserService();
+            User user = uServ.loginUser(email, password);
+            if (user == null) {
+                RequestDispatcher rd = request.getRequestDispatcher("./login.jsp");
+                rd.forward(request, response);
+            } else {
+                request.getSession(true).setAttribute(IConstants.SESSION_KEY_USER, user);
+                if (user.getUserType().equals(IConstants.USER_TYPE_ADMIN)) {
+                    RequestDispatcher rd = request.getRequestDispatcher("./AdminHome.jsp");
+                    rd.forward(request, response);
+                } else if (user.getUserType().equals(IConstants.USER_TYPE_GENERAL_USER)) {
+                    RequestDispatcher rd = request.getRequestDispatcher("./productServlet");
+                    rd.forward(request, response);
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("./login.jsp");
+                    rd.forward(request, response);
+                }
+            }
+        }
+
     }
 
     /**

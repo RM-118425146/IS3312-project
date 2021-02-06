@@ -49,13 +49,32 @@ public class UserAdminServlet extends HttpServlet {
             deleteUser(request,response);
             ArrayList<User> users = uServ.getAllUsers();
             request.setAttribute("users", users);
-            request.getRequestDispatcher("/userAdmin.jsp").forward(request, response);
+            request.getRequestDispatcher("./UserAdmin.jsp").forward(request, response);
         }
         if (action.equals("insertUser")){
             insertUser(request,response);
             ArrayList<User> users = uServ.getAllUsers();
             request.setAttribute("users", users);
-            request.getRequestDispatcher("/UserAdmin.jsp").forward(request, response);
+            request.getRequestDispatcher("./UserAdmin.jsp").forward(request, response);
+        }
+        if (action.equals("updateCompleteUser")){
+            updateUser(request,response);
+            ArrayList<User> users = uServ.getAllUsers();
+            request.setAttribute("users", users);
+            request.getRequestDispatcher("./UserAdmin.jsp").forward(request, response);
+        }
+        if (action.equals("edit")){
+            String userId = request.getParameter("id");
+            if (userId == null)
+                request.getRequestDispatcher("./UserAdmin").forward(request, response);
+            else {
+                long uId = Long.parseLong(userId);
+                uServ = new UserService();
+                User oldUser = uServ.getUser(uId);
+                request.setAttribute("oldUser", oldUser);
+                request.getRequestDispatcher("./EditUser.jsp").forward(request, response);
+            }
+               
         }
         else
             request.getRequestDispatcher("/Home").forward(request, response);
@@ -95,6 +114,30 @@ public class UserAdminServlet extends HttpServlet {
         
         UserService uServ = new UserService();
         uServ.insertUser(newUser);
+        
+        
+        
+    }
+    
+    private void updateUser(HttpServletRequest request, HttpServletResponse response){
+        
+        long id = Long.parseLong(request.getParameter("id"));
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String userType = request.getParameter("userType");
+        
+        User newUser = new User();
+        newUser.setId(id);
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setUserType(userType);
+        
+        UserService uServ = new UserService();
+        uServ.updateUser(newUser);
         
         
         

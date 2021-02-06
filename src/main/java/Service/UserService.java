@@ -26,6 +26,12 @@ public class UserService {
         else return null;
     }
     
+    public User getUser(long userId){
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserById(userId);
+        return user;
+    }
+    
     public ArrayList<User> getAllUsers(){
        
         UserDAO uDao = new UserDAO();
@@ -37,6 +43,13 @@ public class UserService {
     public void insertUser(User nUser){
         UserDAO uDao = new UserDAO();
         uDao.insertUser(nUser);
+        return;
+        
+    }
+    
+    public void updateUser(User nUser){
+        UserDAO uDao = new UserDAO();
+        uDao.updateUser(nUser);
         return;
         
     }

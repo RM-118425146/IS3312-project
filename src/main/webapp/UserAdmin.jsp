@@ -40,7 +40,7 @@
                         </li>
                         <li class="nav-item">
                             <c:if test="${not empty SKUSER.firstName}">
-                                <a class="nav-link" href="./login.jsp">Hi ${SKUSER.firstName}
+                                <a class="nav-link" href="./login.jsp">Hi ${SKUSER.firstName} (LogOut)
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </c:if>

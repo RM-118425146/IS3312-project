@@ -44,7 +44,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./login.jsp">Login</a>
+                            <c:if test="${empty SKUSER.firstName}">
+                                <a class="nav-link" href="./login.jsp">Login
+                                </a>
+                            </c:if>
+                            <c:if test="${not empty SKUSER.firstName}">
+                                <a class="nav-link" href="./login.jsp">Hi ${SKUSER.firstName} (LogOut)
+                                </a>
+                            </c:if>
                         </li>
                     </ul>
                 </div>

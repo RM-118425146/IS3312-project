@@ -41,8 +41,14 @@
                             <a class="nav-link" href="./productServlet">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./login.jsp">Login
-                            </a>
+                            <c:if test="${empty SKUSER.firstName}">
+                                <a class="nav-link" href="./login.jsp">Login
+                                </a>
+                            </c:if>
+                            <c:if test="${not empty SKUSER.firstName}">
+                                <a class="nav-link" href="./login.jsp">Hi ${SKUSER.firstName} (LogOut)
+                                </a>
+                            </c:if>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="./cart.jsp">Cart</a>

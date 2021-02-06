@@ -60,6 +60,42 @@ public class UserDAO {
         return tempUser;
 
     }
+    
+    public User getUserById(long userId) {
+
+        DBManager dmbgr = new DBManager();
+        Connection con = dmbgr.getConnection();
+        String password = null;
+        String email = null;
+        String fName = null;
+        String lName = null;
+        String userType = null;
+        User tempUser = new User();
+
+        String query = String.format("SELECT * FROM USERDATA WHERE USER_ID=%d",userId);
+        try {
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                email = (rs.getString(2));
+                password = (rs.getString(3));
+                fName = (rs.getString(4));
+                lName = (rs.getString(5));
+                userType = (rs.getString(6));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        tempUser.setId(userId);
+        tempUser.setEmail(email);
+        tempUser.setFirstName(fName);
+        tempUser.setLastName(lName);
+        tempUser.setPassword(password);
+        tempUser.setUserType(userType);
+        return tempUser;
+
+    }
 
     public ArrayList<User> getAllUsers() {
 
@@ -124,6 +160,31 @@ public class UserDAO {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public void updateUser(User newUser){
+        
+        DBManager dmbgr = new DBManager();
+        Connection con = dmbgr.getConnection();
+        Statement stmt = null;
+        
+        try {
+        
+            stmt = con.createStatement();
+            String sql = String.format("UPDATE USERDATA SET email='%s',password='%s',fname='%s',lname='%s',usertype='%s' where user_id=%d ",newUser.getEmail(),newUser.getPassword(),newUser.getFirstName(),newUser.getLastName(),newUser.getUserType(),newUser.getId());
+            stmt.executeUpdate(sql);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+         }finally {
+            try {
+                stmt.close();
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
     }
     
     public void deleteUser(long userId){

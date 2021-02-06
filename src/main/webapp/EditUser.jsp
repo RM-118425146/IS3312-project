@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.User"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -58,42 +58,51 @@
             <h1 class="my-4">Add New User</h1>
 
             <div class="row">
-                <c:url value="./UserAdminServlet" var="insertUserUrl">
-                    <c:param name="action" value="insertUser"/>
+                <c:url value="./UserAdminServlet" var="updateUserUrl">
+                    <c:param name="action" value="updateCompleteUser"/>
                 </c:url>
 
-                <form action="${insertUserUrl}" method="POST">
+                <form action="${updateUserUrl}" method="POST">
+                    <input id="id" name="id" type="hidden" value="${oldUser.id}">
                     <div class="form-group row">
                         <label for="email" class="col-4 col-form-label">Email</label> 
                         <div class="col-8">
-                            <input id="email" name="email" type="text" class="form-control" required="required">
+                            <input id="email" name="email" type="text" value="${oldUser.email}" class="form-control" required="required">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password" class="col-4 col-form-label">Password</label> 
                         <div class="col-8">
-                            <input id="password" name="password" type="text" class="form-control" required="required">
+                            <input id="password" name="password" type="text" value="${oldUser.password}" class="form-control" required="required">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="firstName" class="col-4 col-form-label">First Name</label> 
                         <div class="col-8">
-                            <input id="firstName" name="firstName" type="text" class="form-control" required="required">
+                            <input id="firstName" name="firstName" type="text" value="${oldUser.firstName}" class="form-control" required="required">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="lastName" class="col-4 col-form-label">Last Name</label> 
                         <div class="col-8">
-                            <input id="lastName" name="lastName" type="text" class="form-control" required="required">
+                            <input id="lastName" name="lastName" type="text" value="${oldUser.lastName}" class="form-control" required="required">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-4">User Type</label> 
                         <div class="col-8">
-                            <select id="userType" name="userType">
-                                <option value="ADMIN">Administrator</option>
-                                <option value="GENUSER">Customer</option>
-                            </select>
+                            <c:if test="${oldUser.userType eq 'ADMIN'}">
+                                <select id="userType" name="userType">
+                                    <option value="ADMIN">Administrator</option>
+                                    <option value="GENUSER">Customer</option>
+                                </select>
+                            </c:if>
+                            <c:if test="${oldUser.userType eq 'GENUSER'}">
+                                <select id="userType" name="userType">
+                                    <option value="ADMIN">Administrator</option>
+                                    <option value="GENUSER">Customer</option>
+                                </select>
+                            </c:if>
                         </div>
                     </div> 
                     <div class="form-group row">
@@ -101,7 +110,7 @@
                             <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                </form> 
+                </form>
             </div>
         </div>
     </body>
@@ -111,4 +120,5 @@
         </div>
     </footer>
 </html>
+
 

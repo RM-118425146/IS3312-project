@@ -69,7 +69,7 @@
                 <div class="column-checkout">
                     <a href="./UserAdminServlet?action=listUsers" class="btn btn-success">Manage Users!</a>
                     <br></br>
-                    <a href="./UserAdminServlet?action=listUsers" class="btn btn-success">Manage Products!</a>
+                    <a href="./ProductAdminServlet?action=listProducts" class="btn btn-success">Manage Products!</a>
                 </div>
             </div>
         </div>

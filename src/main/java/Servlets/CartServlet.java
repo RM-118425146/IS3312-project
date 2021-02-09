@@ -12,6 +12,7 @@ import javax.servlet.http.*;
 
 import Business.*;
 import Model.*;
+import Service.*;
 
 public class CartServlet extends HttpServlet {
 
@@ -19,9 +20,9 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ServletContext sc = getServletContext();
-        
+
         // get current action
         String action = request.getParameter("action");
         if (action == null) {
@@ -32,8 +33,7 @@ public class CartServlet extends HttpServlet {
         String url = "/products.jsp";
         if (action.equals("shop")) {
             url = "/products.jsp";    // the "index" page
-        } 
-        else if (action.equals("cart")) {
+        } else if (action.equals("cart")) {
             String productCode = request.getParameter("itemCode");
             String quantityString = "1";
 
@@ -55,8 +55,9 @@ public class CartServlet extends HttpServlet {
                 quantity = 1;
             }
 
-            String path = sc.getRealPath("/WEB-INF/products.txt");
-            Product product = ProductIO.getProduct(productCode, path);
+            ProductService pServ = new ProductService();
+            System.out.println(productCode);
+            Product product = pServ.getProduct(productCode);
 
             LineItem lineItem = new LineItem();
             lineItem.setProduct(product);
@@ -69,8 +70,7 @@ public class CartServlet extends HttpServlet {
 
             session.setAttribute("cart", cart);
             url = "/cart.jsp";
-        }
-        else if (action.equals("checkout")) {
+        } else if (action.equals("checkout")) {
             url = "/index.jsp";
         }
 

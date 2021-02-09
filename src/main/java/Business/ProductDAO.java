@@ -17,18 +17,19 @@ import Model.*;
 import Data.*;
 import Service.*;
 import Utils.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author be_me
  */
 public class ProductDAO {
-    
+
     /* Gets number of top products specified */
-    /* we are gonna fake this one */
-    public ArrayList<Product> getTopProducts(int numProducts){
-        
-        
+ /* we are gonna fake this one */
+    public ArrayList<Product> getTopProducts(int numProducts) {
+
         DBManager dm = new DBManager();
         Connection con = dm.getConnection();
         int productId = 0;
@@ -46,8 +47,9 @@ public class ProductDAO {
             ResultSet rs = stmt.executeQuery();
             int productCount = 0;
             while (rs.next()) {
-                if (productCount >= numProducts)
+                if (productCount >= numProducts) {
                     break;
+                }
                 productId = (rs.getInt(1));
                 name = (rs.getString(2));
                 itemCode = (rs.getString(3));
@@ -57,7 +59,7 @@ public class ProductDAO {
                 Product product = new Product();
                 product.setId(productId);
                 product.setName(name);
-                product.setitemCode(itemCode);               
+                product.setitemCode(itemCode);
                 product.setDescription(description);
                 product.setPrice(price);
                 product.setImageLocation(imageLocation);
@@ -69,22 +71,20 @@ public class ProductDAO {
             e.printStackTrace();
         }
 
-      
         return productData;
-        
-         
-        
+
     }
-    
-    public Product getProductCode(String productCode) throws SQLException {
+
+    public Product getProductCode(int productCode){
         DBManager dbmgr = new DBManager();
         Connection con = dbmgr.getConnection();
 
         String Name = null;
         String ItemCode = null;
         String Description = null;
-        String Price = null;
+        Float Price = null;
         String ImageLocation = null;
+        Product tempProduct = new Product();
 
         String query = String.format("SELECT * FROM PRODUCTS WHERE PRODUCT_ID=%d", productCode);
 
@@ -95,7 +95,7 @@ public class ProductDAO {
                 Name = (rs.getString(2));
                 ItemCode = (rs.getString(3));
                 Description = (rs.getString(4));
-                Price = (rs.getString(5));
+                Price = (rs.getFloat(5));
                 ImageLocation = (rs.getString(6));
             }
 
@@ -103,7 +103,52 @@ public class ProductDAO {
             e.printStackTrace();
         }
 
-        return null;
+        tempProduct.setId(productCode);
+        tempProduct.setName(Name);
+        tempProduct.setDescription(Description);
+        tempProduct.setitemCode(ItemCode);
+        tempProduct.setPrice(Price);
+        tempProduct.setImageLocation(ImageLocation);
+        return tempProduct;
+
+    }
+    
+    public Product getProductCode(String productCode){
+        DBManager dbmgr = new DBManager();
+        Connection con = dbmgr.getConnection();
+
+        long ID = 0;
+        String Name = null;
+        String ItemCode = null;
+        String Description = null;
+        Float Price = null;
+        String ImageLocation = null;
+        Product tempProduct = new Product();
+
+        String query = String.format("SELECT * FROM PRODUCTS WHERE ITEMCODE='%s'", productCode);
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ID = (rs.getLong(1));
+                Name = (rs.getString(2));
+                Description = (rs.getString(4));
+                Price = (rs.getFloat(5));
+                ImageLocation = (rs.getString(6));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        tempProduct.setId(ID);
+        tempProduct.setName(Name);
+        tempProduct.setDescription(Description);
+        tempProduct.setitemCode(productCode);
+        tempProduct.setPrice(Price);
+        tempProduct.setImageLocation(ImageLocation);
+        return tempProduct;
 
     }
 
@@ -112,10 +157,11 @@ public class ProductDAO {
         DBManager dm = new DBManager();
         Connection con = dm.getConnection();
 
+        long ID = 0;
         String Name = null;
         String ItemCode = null;
         String Description = null;
-        String Price = null;
+        Float Price = null;
         String ImageLocation = null;
 
         ArrayList<Product> productData = new ArrayList();
@@ -125,11 +171,20 @@ public class ProductDAO {
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                ID = (rs.getLong(1));
                 Name = (rs.getString(2));
                 ItemCode = (rs.getString(3));
                 Description = (rs.getString(4));
-                Price = (rs.getString(5));
+                Price = (rs.getFloat(5));
                 ImageLocation = (rs.getString(6));
+                Product tempProduct = new Product();
+                tempProduct.setId(ID);
+                tempProduct.setName(Name);
+                tempProduct.setDescription(Description);
+                tempProduct.setitemCode(ItemCode);
+                tempProduct.setPrice(Price);
+                tempProduct.setImageLocation(ImageLocation);
+                productData.add(tempProduct);
             }
 
         } catch (SQLException e) {
@@ -148,7 +203,7 @@ public class ProductDAO {
         try {
             stmt = con.createStatement();
             String sql = String.format("INSERT INTO PRODUCTS(NAME, ITEMCODE, DESCRIPTION, PRICE, IMAGELOCATION)"
-                    + "VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getPrice(), newProduct.getImageLocation());
+                    + "VALUES('%s', '%s', '%s', %s, '%s')", newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getPrice(), newProduct.getImageLocation());
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -173,8 +228,8 @@ public class ProductDAO {
         try {
 
             stmt = con.createStatement();
-            String sql = String.format("UPDATE PRODUCTS SET NAME='%s', ITEMCODE='%s', DESCRIPTION='%s', PRICE='%s', IMAGELOCATION='%s' where PRODUCT_CODE=%d", 
-                    newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getPrice(),  newProduct.getImageLocation());
+            String sql = String.format("UPDATE PRODUCTS SET NAME='%s', ITEMCODE='%s', DESCRIPTION='%s', PRICE=%s, IMAGELOCATION='%s' where PRODUCT_ID=%d",
+                    newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getPrice(), newProduct.getImageLocation(), newProduct.getId());
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -189,7 +244,7 @@ public class ProductDAO {
 
     }
 
-    public void deleteProduct(String productCode) {
+    public void deleteProduct(Integer productCode) {
 
         DBManager dmbgr = new DBManager();
         Connection con = dmbgr.getConnection();
@@ -198,7 +253,7 @@ public class ProductDAO {
         try {
 
             stmt = con.createStatement();
-            String sql = String.format("DELETE FROM PRODUCTS WHERE PRODUCT_CODE=%d", productCode);
+            String sql = String.format("DELETE FROM PRODUCTS WHERE PRODUCT_ID=%d", productCode);
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -212,5 +267,5 @@ public class ProductDAO {
         }
 
     }
-    
+
 }

@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
 
     <head>
@@ -78,8 +79,8 @@
                                 <p class="card-text">${topProducts.description}</p>
                             </div>
                             <div class="card-footer">
-                                <form action="CartServlet" method="post">
-                                    <input type="hidden" name="itemCode" value="${topProducts.itemCode}">
+                                <form action="CartServlet?itemCode=${topProducts.itemCode}" method="post">
+                                    <input type="hidden" name="productCode" value="${topProducts.itemCode}">
                                     <input type="hidden" name="action" value="cart">
                                     <input type="submit" value="€${topProducts.price} - Add to Basket!" class="btn btn-primary">
                                 </form>

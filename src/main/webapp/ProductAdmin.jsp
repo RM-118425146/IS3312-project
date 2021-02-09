@@ -26,7 +26,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="./index.html">Murnane & Co. Hair Products</a>
+                <a class="navbar-brand" href="./index.jsp">Murnane & Co. Hair Products</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -72,11 +72,11 @@
                         <c:forEach items="${Products}" var="Products">
                             <c:url value="./ProductAdminServlet" var="editProductUrl">
                                 <c:param name="action" value="edit"/>
-                                <c:param name="productCode" value="${Products.id}"/>
+                                <c:param name="id" value="${Products.id}"/>
                             </c:url>
-                            <c:url value="./ProductsAdminServlet" var="deleteProductUrl">
+                            <c:url value="./ProductAdminServlet" var="deleteProductUrl">
                                 <c:param name="action" value="delete"/>
-                                <c:param name="productCode" value="${Products.id}"/>
+                                <c:param name="id" value="${Products.id}"/>
                             </c:url>
                             <tr>
                                 <td scope="row">${Products.itemCode}</th>
@@ -92,6 +92,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <c:url value="./ProductAdminServlet" var="addProductUrl">
                                 <c:param name="action" value="add"/>
                             </c:url>
@@ -99,13 +100,14 @@
 
                         </tr>
                     </tbody>
-                </table>      
+                </table>
+
             </div>
         </div>
     </body>
-    <footer class="py-5-cust bg-dark">
+    <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Murnane &amp; Co. 2020</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Murnane &AMP; Co. 2020</p>
         </div>
     </footer>
 </html>

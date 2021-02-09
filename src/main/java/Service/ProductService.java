@@ -23,15 +23,21 @@ public class ProductService {
         
     }
     
-    public Product getProduct(String productCode) throws SQLException {
+    public Product getProduct(int productCode){
         ProductDAO productDAO = new ProductDAO();
         Product product = productDAO.getProductCode(productCode);
         return product;
     }
-
+    
+    public Product getProduct(String productCode){
+        ProductDAO productDAO = new ProductDAO();
+        Product product = productDAO.getProductCode(productCode);
+        return product;
+    }
+    
     public ArrayList<Product> getAllProducts() {
         ProductDAO pDao = new ProductDAO();
-        ArrayList<Product> productList = pDao.getTopProducts(9);
+        ArrayList<Product> productList = pDao.getTopProducts(12);
         return productList;
     }
 
@@ -46,7 +52,7 @@ public class ProductService {
 
     }
 
-    public void deleteProduct(String productCode) {
+    public void deleteProduct(Integer productCode) {
         ProductDAO pDao = new ProductDAO();
         pDao.deleteProduct(productCode);
 

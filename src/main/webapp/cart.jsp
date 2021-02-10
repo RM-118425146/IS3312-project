@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="./index.html">Home</a>
+                            <a class="nav-link" href="./index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./productServlet">Products</a>
@@ -101,9 +101,6 @@
                     </table>
 
 
-                </div>
-                <div>
-                    <img src="resources/images/cart.gif" alt="">
                 </div>
             </div>
         </div>

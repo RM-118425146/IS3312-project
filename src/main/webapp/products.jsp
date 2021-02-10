@@ -79,11 +79,14 @@
                                 <p class="card-text">${topProducts.description}</p>
                             </div>
                             <div class="card-footer">
+                                <form action="ProductPage?itemCode=${topProducts.itemCode}" method="post">
+                                    <input type="submit" value="View Product!" class="btn btn-primary">
+                                </form> 
                                 <form action="CartServlet?itemCode=${topProducts.itemCode}" method="post">
                                     <input type="hidden" name="productCode" value="${topProducts.itemCode}">
                                     <input type="hidden" name="action" value="cart">
                                     <input type="submit" value="€${topProducts.price} - Add to Basket!" class="btn btn-primary">
-                                </form>
+                                </form>     
                             </div>
                         </div>
                     </div>

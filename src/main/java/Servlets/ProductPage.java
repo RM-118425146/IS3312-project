@@ -5,21 +5,21 @@
  */
 package Servlets;
 
+import Model.Product;
+import Service.ProductService;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Data.*;
-import Model.*;
-import Service.ProductService;
-import javax.servlet.ServletContext;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "productServlet", urlPatterns = {"/productServlet"})
-public class productServlet extends HttpServlet {
+/**
+ *
+ * @author Rory
+ */
+public class ProductPage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +33,21 @@ public class productServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ServletContext sc = getServletContext();
 
-        ProductDB pServ = new ProductDB();
-        ArrayList<Product> topProducts = pServ.getHomePageProducts();
 
-        request.setAttribute("products", topProducts);
-        request.getRequestDispatcher("/products.jsp").forward(request, response);
+            String productCode = request.getParameter("itemCode");
 
+            ProductService pServ = new ProductService();
+            Product product = pServ.getProduct(productCode);
+
+            request.setAttribute("products", product);
+            sc.getRequestDispatcher("/productPage.jsp").forward(request, response);
+
+        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

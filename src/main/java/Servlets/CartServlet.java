@@ -32,7 +32,9 @@ public class CartServlet extends HttpServlet {
         // perform action and set URL to appropriate page
         String url = "/products.jsp";
         if (action.equals("shop")) {
-            url = "/products.jsp";    // the "index" page
+            url = "/products.jsp";
+            sc.getRequestDispatcher(url).forward(request, response);
+// the "index" page
         } else if (action.equals("cart")) {
             String productCode = request.getParameter("itemCode");
             String quantityString = "1";
@@ -56,7 +58,6 @@ public class CartServlet extends HttpServlet {
             }
 
             ProductService pServ = new ProductService();
-            System.out.println(productCode);
             Product product = pServ.getProduct(productCode);
 
             LineItem lineItem = new LineItem();
@@ -70,11 +71,13 @@ public class CartServlet extends HttpServlet {
 
             session.setAttribute("cart", cart);
             url = "/cart.jsp";
+            sc.getRequestDispatcher(url).forward(request, response);
+
         } else if (action.equals("checkout")) {
             url = "/index.jsp";
+            sc.getRequestDispatcher(url).forward(request, response);
+
         }
 
-        sc.getRequestDispatcher(url)
-                .forward(request, response);
     }
 }

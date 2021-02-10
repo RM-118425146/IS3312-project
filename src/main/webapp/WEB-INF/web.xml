@@ -29,6 +29,10 @@
         <servlet-name>ProductAdminServlet</servlet-name>
         <servlet-class>Servlets.ProductAdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductPage</servlet-name>
+        <servlet-class>Servlets.ProductPage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -56,6 +60,10 @@
     <servlet-mapping>
         <servlet-name>ProductAdminServlet</servlet-name>
         <url-pattern>/ProductAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductPage</servlet-name>
+        <url-pattern>/ProductPage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

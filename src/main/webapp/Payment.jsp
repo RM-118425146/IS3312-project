@@ -29,7 +29,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="./index.html">Murnane & Co. Hair Products</a>
+                <a class="navbar-brand" href="./index.jsp">Murnane & Co. Hair Products</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -52,7 +52,7 @@
                             </c:if>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="./cart.jsp">Cart</a>
+                            <a class="nav-link" href="./Checkout.jsp">Checkout!</a>
                             <span class="sr-only">(current)</span>
                         </li>
                     </ul>
@@ -64,54 +64,46 @@
 
             <!-- Page Heading -->
             <h1 class="my-4">Thank You!
-                <small>Your items have been added to your cart, click to check out!</small>
+                <small>Please enter payment details!</small>
             </h1>
 
-            <div class="row-error">
-                <div >
-                    <h1>Your cart</h1>
-
-                    <table class="table table-bordered">
-                        <thead>
+            <div class="row text-center">
+                <br></br><br></br><br></br>
+                <form action="CartServlet" >
+                    <center>
+                        <table cellspacing="10">
                             <tr>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Amount</th>
+                                <td>Name:</td>
+                                <td><input type="text" required/></td>
                             </tr>
-                        </thead>
-                        <tbody>
-
-                            <%@ taglib uri="WEB-INF/murach.tld" prefix="mma" %>
-                            <mma:cart>
-                                <tr>
-                                    <td>${quantity}</td>
-                                    <td>${productDescription}</td>
-                                    <td>${productPrice}</td>
-                                    <td>${total}</td>
-                                </tr>
-                            </mma:cart>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><a href="./productServlet"> Continue Shopping</a>|<a href="./Payment.jsp">checkout</a></td>
+                                <td>Phone Number:</td>
+                                <td><input type="text" required/></td>
                             </tr>
-                        </tbody>
-                    </table>
-
-
-                </div>
+                            <tr>
+                                <td>Card Number:</td>
+                                <td><input type="text" required/></td>
+                            </tr>
+                            <tr>
+                                <td>Pin Number:</td>
+                                <td><input type="Password" required/></td>
+                            </tr>
+                        </table>
+                    </center>
+                    <center>
+                        <br></br>
+                        <input type="hidden" name="action" value="checkout">
+                        <input class="btn btn-primary" type="submit" value="checkout" />
+                    </center>
+                </form>
             </div>
         </div>
 
-        <footer class="py-5 bg-dark">
+        <footer class="py-5-cust bg-dark">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Murnane &AMP; Co. 2020</p>
+                <p class="m-0 text-center text-white">Copyright &copy; Murnane &amp; Co. 2020</p>
             </div>
         </footer>
 
     </body>
 </html>
-
-

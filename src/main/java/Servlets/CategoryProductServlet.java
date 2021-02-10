@@ -5,21 +5,22 @@
  */
 package Servlets;
 
+import Data.ProductDB;
+import Model.Product;
+import Service.ProductService;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Data.*;
-import Model.*;
-import Service.ProductService;
-import javax.servlet.ServletContext;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "productServlet", urlPatterns = {"/productServlet"})
-public class productServlet extends HttpServlet {
+/**
+ *
+ * @author Rory
+ */
+public class CategoryProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +34,18 @@ public class productServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        ProductDB pServ = new ProductDB();
-        ArrayList<Product> topProducts = pServ.getHomePageProducts();
         
         ProductService pSer = new ProductService();
         ArrayList<String> categories = pSer.getCategories();
+        
+        
+        String temp = request.getParameter("category");
+        String category = temp.replaceAll("%20", " "); 
+        ArrayList<Product> products = pSer.getCategoryProducts(category);
 
-        request.setAttribute("products", topProducts);
+        request.setAttribute("products", products);
         request.setAttribute("categories", categories);
         request.getRequestDispatcher("/products.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

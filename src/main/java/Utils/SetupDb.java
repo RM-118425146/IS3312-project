@@ -97,9 +97,10 @@ public class SetupDb {
                 String name = results.getString(2);
                 String itemCode = results.getString(3);
                 String description = results.getString(4);
-                float price = results.getFloat(5);
-                String imageLocation = results.getString(6);
-                logger.info(id + "\t\t" + name + "\t\t" + itemCode + "\t\t" + description + "\t\t" + price + "\t\t" + imageLocation);
+                String category = results.getString(5);
+                float price = results.getFloat(6);
+                String imageLocation = results.getString(7);
+                logger.info(id + "\t\t" + name + "\t\t" + itemCode + "\t\t" + description + "\t\t" + category + "\t\t" + price + "\t\t" + imageLocation);
             }
             results.close();
             stmt.close();

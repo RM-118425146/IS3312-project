@@ -18,6 +18,7 @@ public class Product implements Serializable {
     private String name;
     private String itemCode;
     private String description;
+    private String category;
     private float price;
     private String imageLocation;
     
@@ -112,6 +113,14 @@ public class Product implements Serializable {
     public String getPriceCurrencyFormat() {
         NumberFormat currency = NumberFormat.getCurrencyInstance();
         return currency.format(price);
+    }
+    
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }

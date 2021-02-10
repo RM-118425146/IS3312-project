@@ -59,9 +59,18 @@
             </div>
         </nav>
 
+        <div class="col-lg-3">
+            <h3 class="my-4">Categories:</h3>
+            <div class="list-group">
+                <a href="productServlet" class="list-group-item active">All Products</a>
+                <c:forEach items="${categories}" var="name">
+                    <a href="CategoryProductServlet?category=${name}" class="list-group-item active">${name}</a>
+                </c:forEach> 
+            </div>
+        </div>
 
         <h1 class="my-4-products">
-            <small>Available products:</small>
+            <small>All products:</small>
         </h1>
 
         <!-- Page Content -->

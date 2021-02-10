@@ -70,7 +70,7 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${Products}" var="Products">
-                            <c:url value="./ProductAdminServlet" var="editProductUrl">
+                            <c:url value="./ProductAdminServlet?itemCode=${Products.itemCode}" var="editProductUrl">
                                 <c:param name="action" value="edit"/>
                                 <c:param name="id" value="${Products.id}"/>
                             </c:url>

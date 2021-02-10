@@ -121,6 +121,7 @@ public class ProductDAO {
         long ID = 0;
         String Name = null;
         String Description = null;
+        String Category = null;
         Float Price = null;
         String ImageLocation = null;
         Product tempProduct = new Product();
@@ -134,6 +135,7 @@ public class ProductDAO {
                 ID = (rs.getLong(1));
                 Name = (rs.getString(2));
                 Description = (rs.getString(4));
+                Category = (rs.getString(5));
                 Price = (rs.getFloat(6));
                 ImageLocation = (rs.getString(7));
             }
@@ -145,6 +147,7 @@ public class ProductDAO {
         tempProduct.setId(ID);
         tempProduct.setName(Name);
         tempProduct.setDescription(Description);
+        tempProduct.setCategory(Category);
         tempProduct.setitemCode(productCode);
         tempProduct.setPrice(Price);
         tempProduct.setImageLocation(ImageLocation);
@@ -295,7 +298,7 @@ public class ProductDAO {
         return categories;
 
     }
-    
+
     public ArrayList<Product> getCategoryProducts(String Category) {
 
         DBManager dm = new DBManager();
@@ -309,7 +312,7 @@ public class ProductDAO {
 
         ArrayList<Product> productData = new ArrayList();
 
-        String query = String.format( "SELECT * FROM PRODUCTS WHERE CATEGORY='%s'", Category);
+        String query = String.format("SELECT * FROM PRODUCTS WHERE CATEGORY='%s'", Category);
         try {
             PreparedStatement stmt = con.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();

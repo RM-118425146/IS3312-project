@@ -70,13 +70,12 @@ public class ProductAdminServlet extends HttpServlet {
             request.getRequestDispatcher("/ProductAdmin.jsp").forward(request, response);
         }
         if (action.equals("edit")) {
-            String productCode = request.getParameter("productCode");
+            String productCode = request.getParameter("itemCode");
             if (productCode == null) {
                 request.getRequestDispatcher("/ProductAdmin.jsp").forward(request, response);
             } else {
-                Integer pId = Integer.getInteger(productCode);
                 pSer = new ProductService();
-                Product oldProduct = pSer.getProduct(pId);
+                Product oldProduct = pSer.getProduct(productCode);
                 request.setAttribute("oldProduct", oldProduct);
                 request.getRequestDispatcher("/EditProduct.jsp").forward(request, response);
             }
@@ -98,42 +97,46 @@ public class ProductAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request,response);    
+        processRequest(request, response);
     }
 
     private void insertProduct(HttpServletRequest request, HttpServletResponse response) {
 
-        String Name = request.getParameter("Name");
-        String Description = request.getParameter("Description");
-        String ItemCode = request.getParameter("ItemCode");
-        String price = request.getParameter("Price");
+        String Name = request.getParameter("name");
+        String Description = request.getParameter("description");
+        String ItemCode = request.getParameter("itemCode");
+        String Category = request.getParameter("category");
+        String price = request.getParameter("price");
         Float Price = Float.parseFloat(price);
-        String ImageLocation = request.getParameter("ImageLocation");
+        String ImageLocation = request.getParameter("imageLocation");
 
         Product newProduct = new Product();
         newProduct.setName(Name);
         newProduct.setitemCode(ItemCode);
         newProduct.setDescription(Description);
+        newProduct.setCategory(Category);
         newProduct.setPrice(Price);
         newProduct.setImageLocation(ImageLocation);
 
         ProductService pSer = new ProductService();
         pSer.insertProduct(newProduct);
     }
-    
+
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
-        
-        String Name = request.getParameter("Name");
-        String Description = request.getParameter("Description");
-        String ItemCode = request.getParameter("ItemCode");
-        String price = request.getParameter("Price");
+
+        String Name = request.getParameter("name");
+        String Description = request.getParameter("description");
+        String ItemCode = request.getParameter("itemCode");
+        String Category = request.getParameter("category");
+        String price = request.getParameter("price");
         Float Price = Float.parseFloat(price);
-        String ImageLocation = request.getParameter("ImageLocation");
+        String ImageLocation = request.getParameter("imageLocation");
 
         Product newProduct = new Product();
         newProduct.setName(Name);
         newProduct.setitemCode(ItemCode);
         newProduct.setDescription(Description);
+        newProduct.setCategory(Category);
         newProduct.setPrice(Price);
         newProduct.setImageLocation(ImageLocation);
 
@@ -142,13 +145,13 @@ public class ProductAdminServlet extends HttpServlet {
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
-        
+
         String productCode = request.getParameter("productCode");
         ProductService pSer = new ProductService();
         pSer.deleteProduct(Integer.getInteger(productCode));
         return;
     }
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -162,7 +165,7 @@ public class ProductAdminServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

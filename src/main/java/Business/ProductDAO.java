@@ -205,8 +205,8 @@ public class ProductDAO {
 
         try {
             stmt = con.createStatement();
-            String sql = String.format("INSERT INTO PRODUCTS(NAME, ITEMCODE, DESCRIPTION, CATEGORY, PRICE, IMAGELOCATION)"
-                    + "VALUES('%s', '%s', '%s', %s, %s, '%s')", newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getCategory(), newProduct.getPrice(), newProduct.getImageLocation());
+            String sql = String.format("INSERT INTO PRODUCTS(NAME, ITEMCODE, DESCRIPTION, CATEGORY, PRICE, IMAGE_LOCATION)"
+                    + "VALUES('%s', '%s', '%s', '%s', %s, '%s')", newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getCategory(), newProduct.getPrice(), newProduct.getImageLocation());
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -231,8 +231,7 @@ public class ProductDAO {
         try {
 
             stmt = con.createStatement();
-            String sql = String.format("UPDATE PRODUCTS SET NAME='%s', ITEMCODE='%s', DESCRIPTION='%s', CATEGORY='%s', PRICE=%s, IMAGELOCATION='%s' where PRODUCT_ID=%d",
-                    newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getCategory(), newProduct.getPrice(), newProduct.getImageLocation(), newProduct.getId());
+            String sql = String.format("UPDATE PRODUCTS SET NAME='%s', ITEMCODE='%s', DESCRIPTION='%s', CATEGORY='%s', PRICE=%s, IMAGE_LOCATION='%s' where PRODUCT_ID=%d",newProduct.getName(), newProduct.getitemCode(), newProduct.getDescription(), newProduct.getCategory(), newProduct.getPrice(), newProduct.getImageLocation(), newProduct.getId());
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -247,7 +246,7 @@ public class ProductDAO {
 
     }
 
-    public void deleteProduct(Integer productCode) {
+    public void deleteProduct(String productCode) {
 
         DBManager dmbgr = new DBManager();
         Connection con = dmbgr.getConnection();
@@ -256,7 +255,7 @@ public class ProductDAO {
         try {
 
             stmt = con.createStatement();
-            String sql = String.format("DELETE FROM PRODUCTS WHERE PRODUCT_ID=%d", productCode);
+            String sql = String.format("DELETE FROM PRODUCTS WHERE ITEMCODE='%s'", productCode);
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();

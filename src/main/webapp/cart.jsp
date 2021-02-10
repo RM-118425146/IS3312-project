@@ -95,7 +95,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><a href="./productServlet"> Continue Shopping</a>|<a href="./Payment.jsp">checkout</a></td>
+                                <td><a href="./productServlet"> Continue Shopping</a> | <a href="./Payment.jsp">checkout</a></td>
                             </tr>
                         </tbody>
                     </table>

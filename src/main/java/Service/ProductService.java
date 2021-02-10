@@ -52,7 +52,7 @@ public class ProductService {
 
     }
 
-    public void deleteProduct(Integer productCode) {
+    public void deleteProduct(String productCode) {
         ProductDAO pDao = new ProductDAO();
         pDao.deleteProduct(productCode);
 

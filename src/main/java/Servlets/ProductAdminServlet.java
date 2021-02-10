@@ -146,9 +146,9 @@ public class ProductAdminServlet extends HttpServlet {
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
 
-        String productCode = request.getParameter("productCode");
+        String productCode = request.getParameter("itemCode");
         ProductService pSer = new ProductService();
-        pSer.deleteProduct(Integer.getInteger(productCode));
+        pSer.deleteProduct(productCode);
         return;
     }
 

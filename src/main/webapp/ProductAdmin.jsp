@@ -74,7 +74,7 @@
                                 <c:param name="action" value="edit"/>
                                 <c:param name="id" value="${Products.id}"/>
                             </c:url>
-                            <c:url value="./ProductAdminServlet" var="deleteProductUrl">
+                            <c:url value="./ProductAdminServlet?itemCode=${Products.itemCode}" var="deleteProductUrl">
                                 <c:param name="action" value="delete"/>
                                 <c:param name="id" value="${Products.id}"/>
                             </c:url>
